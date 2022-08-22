@@ -1,0 +1,7 @@
+<app-navbar (cartClick)="showDrawer = !showDrawer"></app-navbar>
+<div class="flex">
+  <div class="flex-grow">
+  <app-products></app-products>
+  </div>
+  <app-drawer class="" *ngIf="showDrawer"></app-drawer>
+</div>
