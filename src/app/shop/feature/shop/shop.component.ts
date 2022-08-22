@@ -1,5 +1,4 @@
-import {Component} from '@angular/core';
-import {FakeApiService} from "../../data-access/fake-api.service";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-shop',
@@ -8,9 +7,4 @@ import {FakeApiService} from "../../data-access/fake-api.service";
 })
 export class ShopComponent {
   showDrawer: boolean = true;
-
-  products$ = this.api.getFakeApi()
-
-  constructor(private api: FakeApiService) {}
-
 }

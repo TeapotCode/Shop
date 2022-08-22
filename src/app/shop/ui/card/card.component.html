@@ -1,29 +1,31 @@
+<div class="card w-48 bg-primary-content/5 shadow-xl relative" *ngIf="product">
+  <p
+    class="px-2 py-1 bg-warning rounded-badge text-base-300 font-bold text-xl absolute top-3 left-3"
+  >
+    {{ product.price }} zł
+  </p>
 
-<div class="indicator" *ngIf="product">
-  <div class="indicator-item indicator-start">
-    <p class="px-2 py-1 bg-warning rounded-badge text-base-300 font-bold text-xl">{{product.price}} zł</p>
-  </div>
+  <figure>
+    <img
+      src="https://placeimg.com/400/225/arch"
+      alt="Zdjęcie {{ product.name }}"
+    />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{{ product.name }}</h2>
 
-  <div class="card w-60 bg-base-100 shadow-xl" >
-    <figure><img src="https://placeimg.com/400/225/arch" alt="Zdjęcie {{product.name}}" /></figure>
-    <div class="card-body">
-      <h2 class="card-title">{{product.name}}</h2>
+    <app-stars [rating]="product.stars" class="pointer-events-none"></app-stars>
 
-      <app-stars [rating]="product.stars" class="pointer-events-none"></app-stars>
-
-      <ng-container *ngIf="product.inStock !== 0; else notAvailable">
-      <app-count-input class="m-auto" [max]="product.inStock"></app-count-input>
-
-      <div class="card-actions m-auto">
-        <button class="btn w-32">Do koszyka</button>
+    <ng-container *ngIf="product.inStock !== 0; else notAvailable">
+      <div class="block m-auto">
+        <app-count-input [max]="product.inStock"></app-count-input>
       </div>
-      </ng-container>
-    </div>
+
+      <button class="btn w-32">Do koszyka</button>
+    </ng-container>
   </div>
 </div>
-
 
 <ng-template #notAvailable>
   <p class="font-bold text-neutral-content/80">Produkt nie dostępny</p>
 </ng-template>
-

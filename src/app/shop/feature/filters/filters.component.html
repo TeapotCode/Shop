@@ -1,0 +1,11 @@
+<ng-container *ngIf="selectedFilters$ | async as filters">
+  <ng-container *ngFor="let enum of productCategory | keyvalue">
+    <button
+      class="btn btn-warning"
+      (click)="onSelect(enum.value)"
+      [class.btn-outline]="!filters.includes(enum.value)"
+    >
+      {{ enum.value }}
+    </button>
+  </ng-container>
+</ng-container>

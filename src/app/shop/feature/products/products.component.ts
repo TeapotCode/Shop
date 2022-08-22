@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {FakeApiService} from "../../data-access/fake-api.service";
+import { Store } from '@ngrx/store';
+import { loadProducts } from '../../data-access/store/shop.action';
+import { ShopState } from '../../data-access/store/shop.reducer';
+import { selectFilteredProducts } from '../../data-access/store/shop.select';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent {
-  showDrawer: boolean = true;
+export class ProductsComponent implements OnInit {
+  products$ = this.store.select(selectFilteredProducts);
 
-  products$ = this.api.getFakeApi()
+  constructor(private store: Store<ShopState>) {}
 
-  constructor(private api: FakeApiService) {}
-
+  ngOnInit(): void {
+    this.store.dispatch(loadProducts());
+  }
 }
