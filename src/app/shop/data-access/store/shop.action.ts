@@ -1,5 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Product, ProductCategory } from '../../utils/product.interface';
+import {
+  Product,
+  ProductCategory,
+  ProductChange,
+} from '../../utils/product.interface';
 
 export const loadProducts = createAction('[Shop] Load Products');
 
@@ -15,10 +19,10 @@ export const toggleFilter = createAction(
 
 export const addToCart = createAction(
   '[Shop] Add Product To Cart',
-  props<{ productId: number; count: number }>()
+  props<ProductChange>()
 );
 
 export const removeFromCart = createAction(
   '[Shop] Remove Product From Cart',
-  props<{ productId: number; count: number }>()
+  props<ProductChange>()
 );

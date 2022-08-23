@@ -1,4 +1,8 @@
-<app-navbar (cartClick)="showDrawer = !showDrawer"></app-navbar>
+<app-navbar
+  *ngIf="{ number: productsInCart$ | async } as vm"
+  (cartClick)="showDrawer = !showDrawer"
+  [cardItems]="vm.number!"
+></app-navbar>
 <div class="flex">
   <div class="flex-grow mx-12">
     <app-filters></app-filters>

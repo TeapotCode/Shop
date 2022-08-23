@@ -14,7 +14,11 @@ export interface Product {
   category: ProductCategory;
 }
 
-export interface ProductOut {
-  productId: number;
+export interface ProductChange {
+  product: Product;
   count: number;
+}
+
+export interface ProductInCart extends Product {
+  max: number;
 }

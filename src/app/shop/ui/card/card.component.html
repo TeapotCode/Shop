@@ -11,24 +11,24 @@
       alt="Zdjęcie {{ product.name }}"
     />
   </figure>
-  <div class="card-body">
-    <h2 class="card-title">{{ product.name }}</h2>
+  <div class="card-body p-5 items-center">
+    <h2 class="card-title text-center">{{ product.name }}</h2>
 
     <app-stars [rating]="product.stars" class="pointer-events-none"></app-stars>
 
     <ng-container *ngIf="product.inStock !== 0; else notAvailable">
-      <div class="block m-auto">
-        <app-count-input
-          [max]="product.inStock"
-          [formControl]="count"
-        ></app-count-input>
-      </div>
+      <app-count-input
+        [max]="product.inStock"
+        [formControl]="count"
+      ></app-count-input>
 
-      <button class="btn w-32" (click)="onAddToCartClick()">Do koszyka</button>
+      <button class="btn w-32" (click)="AddToCartClick()">Do koszyka</button>
     </ng-container>
   </div>
 </div>
 
 <ng-template #notAvailable>
-  <p class="font-bold text-neutral-content/80">Produkt nie dostępny</p>
+  <p class="font-bold text-neutral-content/80 text-center">
+    Produkt nie dostępny
+  </p>
 </ng-template>

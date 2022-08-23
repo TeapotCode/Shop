@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { addToCart, loadProducts } from '../../data-access/store/shop.action';
 import { ShopState } from '../../data-access/store/shop.reducer';
 import { selectFilteredProducts } from '../../data-access/store/shop.select';
-import { Product, ProductOut } from '../../utils/product.interface';
+import { Product, ProductChange } from '../../utils/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
     return product.id;
   }
 
-  onBuy({ productId, count }: ProductOut) {
-    this.store.dispatch(addToCart({ productId, count }));
+  onBuy({ product, count }: ProductChange) {
+    this.store.dispatch(addToCart({ product, count }));
   }
 }

@@ -1,0 +1,27 @@
+<div class="card card-side w-72 bg-primary-content/5 shadow-xl" *ngIf="product">
+  <figure class="w-1/3 object-cover">
+    <img
+      class="object-cover h-full"
+      src="https://placeimg.com/400/225/arch"
+      alt="Zdjęcie {{ product.name }}"
+    />
+  </figure>
+  <div
+    class="grid grid-cols-[3fr_1fr] grid-rows-[1fr_min-content] w-2/3 justify-items-center items-center"
+  >
+    <p class="col-span-2 px-2 pt-2 text-center">{{ product.name }}</p>
+
+    <app-count-input
+      [min]="1"
+      [formControl]="count"
+      (plusClick)="add()"
+    ></app-count-input>
+
+    <div
+      class="p-2 rounded-full cursor-pointer justify-self-start"
+      (click)="removeProduct()"
+    >
+      <svg-icon key="bin"></svg-icon>
+    </div>
+  </div>
+</div>

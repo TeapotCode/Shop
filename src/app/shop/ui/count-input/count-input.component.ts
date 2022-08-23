@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   forwardRef,
   Input,
+  Output,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -25,6 +27,17 @@ export class CountInputComponent implements ControlValueAccessor {
   onChanged = (val: number) => {};
   onTouched = () => {};
   _max: number = Infinity;
+  _min: number = 0;
+
+  @Output() plusClick = new EventEmitter<void>();
+  @Output() minusClick = new EventEmitter<void>();
+
+  @Input()
+  set min(valueIn: number) {
+    this._min = valueIn;
+    if (this.value < this._min) this.writeValue(this._min);
+  }
+
   @Input()
   set max(valueIn: number) {
     this._max = valueIn;
@@ -49,11 +62,16 @@ export class CountInputComponent implements ControlValueAccessor {
   }
 
   minus() {
-    if (this.value > 0) this.writeValue(this.value - 1);
+    if (this.value > this._min) {
+      this.writeValue(this.value - 1);
+      this.minusClick.emit();
+    }
   }
 
   plus() {
-    if (this.value < this._max) this.writeValue(this.value + 1);
-    console.log(this.value);
+    if (this.value < this._max) {
+      this.writeValue(this.value + 1);
+      this.plusClick.emit();
+    }
   }
 }

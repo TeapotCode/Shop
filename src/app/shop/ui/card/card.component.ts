@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Product } from '../../utils/product.interface';
+import { Product, ProductChange } from '../../utils/product.interface';
 
 @Component({
   selector: 'app-card',
@@ -15,13 +15,13 @@ import { Product } from '../../utils/product.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  count = new FormControl(0, { nonNullable: true });
+  count = new FormControl(1, { nonNullable: true });
 
   @Input() product: Product | undefined;
-  @Output() onBuy = new EventEmitter<{ productId: number; count: number }>();
+  @Output() onBuy = new EventEmitter<ProductChange>();
 
-  onAddToCartClick() {
+  AddToCartClick() {
     if (this.count.value === 0) return;
-    this.onBuy.emit({ productId: this.product!.id, count: this.count.value });
+    this.onBuy.emit({ product: this.product!, count: this.count.value });
   }
 }

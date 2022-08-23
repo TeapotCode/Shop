@@ -26,7 +26,7 @@ export const selectCartCount = createSelector(
 );
 
 export const selectCartCostSum = createSelector(selectFeature, (state) =>
-  state.cart.reduce((prev, curr) => prev + curr.price, 0)
+  state.cart.reduce((prev, curr) => prev + curr.price * curr.inStock, 0)
 );
 
 export const selectProductsInCart = createSelector(

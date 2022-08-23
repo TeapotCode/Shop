@@ -2,7 +2,7 @@
   class="p-2 rounded-full cursor-pointer flex items-center"
   (click)="minus()"
 >
-  <svg-icon key="minus" [class.invisible]="value < 1"></svg-icon>
+  <svg-icon key="minus" [class.invisible]="value <= _min"></svg-icon>
 </div>
 
 <span class="font-black text-xl">{{ value }}</span>

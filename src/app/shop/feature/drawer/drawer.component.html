@@ -1,8 +1,12 @@
-<div class="drawer-side flex flex-col content-end w-80">
-  <p>Liczba produktów w koszyku:</p>
-  <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-    <!-- Sidebar content here -->
-    <li><a>Sidebar Item 1</a></li>
-    <li><a>Sidebar Item 2</a></li>
-  </ul>
+<div class="drawer-side flex flex-col content-end w-80 gap-4 h-full">
+  <p>Produktów w koszyku: {{ numberOfProducts$ | async }}</p>
+  <p>Suma zamówienia: {{ costOfProducts$ | async }} zł</p>
+  <!-- Sidebar content here -->
+  <div *ngFor="let product of productsInCart$ | async">
+    <app-card-small
+      [product]="product"
+      (onRemove)="remove($event)"
+      (onAdd)="addProduct(product)"
+    ></app-card-small>
+  </div>
 </div>

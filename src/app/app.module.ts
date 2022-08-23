@@ -21,6 +21,8 @@ import { appPlusIcon } from './svg/plus';
 import { FiltersComponent } from './shop/feature/filters/filters.component';
 import { NotificationModule } from './shop/utils/notification/notification.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CardSmallComponent } from './shop/ui/card-small/card-small.component';
+import { appBinIcon } from './svg/bin';
 
 @NgModule({
   declarations: [
@@ -33,11 +35,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     CountInputComponent,
     ProductsComponent,
     FiltersComponent,
+    CardSmallComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    SvgIconsModule.forRoot({ icons: [appMinusIcon, appPlusIcon] }),
+    SvgIconsModule.forRoot({ icons: [appMinusIcon, appPlusIcon, appBinIcon] }),
     StoreModule.forRoot(rootReducers),
     EffectsModule.forRoot([ShopEffect]),
     StoreDevtoolsModule.instrument({
