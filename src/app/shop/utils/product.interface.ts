@@ -13,3 +13,8 @@ export interface Product {
   price: number;
   category: ProductCategory;
 }
+
+export interface ProductOut {
+  productId: number;
+  count: number;
+}

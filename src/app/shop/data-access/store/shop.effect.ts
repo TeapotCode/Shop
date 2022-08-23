@@ -14,5 +14,11 @@ export class ShopEffect {
     );
   });
 
+  // showToast$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(actions.addToCart, actions.removeFromCart)
+  //   );
+  // });
+
   constructor(private actions$: Actions, private api: FakeApiService) {}
 }

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadProducts } from '../../data-access/store/shop.action';
+import { addToCart, loadProducts } from '../../data-access/store/shop.action';
 import { ShopState } from '../../data-access/store/shop.reducer';
 import { selectFilteredProducts } from '../../data-access/store/shop.select';
-import { Product } from '../../utils/product.interface';
+import { Product, ProductOut } from '../../utils/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -22,5 +22,9 @@ export class ProductsComponent implements OnInit {
 
   trackBy(index: number, product: Product) {
     return product.id;
+  }
+
+  onBuy({ productId, count }: ProductOut) {
+    this.store.dispatch(addToCart({ productId, count }));
   }
 }

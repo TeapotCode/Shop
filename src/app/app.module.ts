@@ -12,13 +12,15 @@ import { ProductsComponent } from './shop/feature/products/products.component';
 import { ShopComponent } from './shop/feature/shop/shop.component';
 import { CardComponent } from './shop/ui/card/card.component';
 import { CountInputComponent } from './shop/ui/count-input/count-input.component';
-import { DrawerComponent } from './shop/ui/drawer/drawer.component';
+import { DrawerComponent } from './shop/feature/drawer/drawer.component';
 import { NavbarComponent } from './shop/ui/navbar/navbar.component';
 import { StarsComponent } from './shop/ui/stars/stars.component';
 import { rootReducers } from './store';
 import { appMinusIcon } from './svg/minus';
 import { appPlusIcon } from './svg/plus';
 import { FiltersComponent } from './shop/feature/filters/filters.component';
+import { NotificationModule } from './shop/utils/notification/notification.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { FiltersComponent } from './shop/feature/filters/filters.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     SvgIconsModule.forRoot({ icons: [appMinusIcon, appPlusIcon] }),
     StoreModule.forRoot(rootReducers),
     EffectsModule.forRoot([ShopEffect]),
@@ -41,6 +44,7 @@ import { FiltersComponent } from './shop/feature/filters/filters.component';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    NotificationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

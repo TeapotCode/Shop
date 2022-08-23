@@ -9,7 +9,7 @@ export const selectProducts = createSelector(
 );
 
 export const selectFilteredProducts = createSelector(selectFeature, (state) => {
-  if (state.filter.length === 0) return state.products;
+  if (!state.filter.length) return state.products;
   return state.products.filter((product) =>
     state.filter.includes(product.category)
   );
@@ -18,4 +18,18 @@ export const selectFilteredProducts = createSelector(selectFeature, (state) => {
 export const selectFilters = createSelector(
   selectFeature,
   (state) => state.filter
+);
+
+export const selectCartCount = createSelector(
+  selectFeature,
+  (state) => state.cart.length
+);
+
+export const selectCartCostSum = createSelector(selectFeature, (state) =>
+  state.cart.reduce((prev, curr) => prev + curr.price, 0)
+);
+
+export const selectProductsInCart = createSelector(
+  selectFeature,
+  (state) => state.cart
 );

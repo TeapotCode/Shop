@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  Input,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { max } from 'rxjs';
 
 @Component({
   selector: 'app-count-input',
@@ -9,7 +13,8 @@ import { max } from 'rxjs';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: CountInputComponent,
+      useExisting: forwardRef(() => CountInputComponent),
+      multi: true,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,9 +22,14 @@ import { max } from 'rxjs';
 export class CountInputComponent implements ControlValueAccessor {
   value: number = 0;
   disabled = false;
-  private onChanged!: Function;
-  private onTouched!: Function;
-  @Input() max: number = Infinity;
+  onChanged = (val: number) => {};
+  onTouched = () => {};
+  _max: number = Infinity;
+  @Input()
+  set max(valueIn: number) {
+    this._max = valueIn;
+    if (this.value > this._max) this.writeValue(this._max);
+  }
 
   registerOnChange(fn: any): void {
     this.onChanged = fn;
@@ -31,6 +41,7 @@ export class CountInputComponent implements ControlValueAccessor {
 
   writeValue(obj: number): void {
     this.value = obj;
+    this.onChanged(obj);
   }
 
   setDisabledState(isDisabled: boolean) {
@@ -42,6 +53,7 @@ export class CountInputComponent implements ControlValueAccessor {
   }
 
   plus() {
-    if (this.value < this.max) this.writeValue(this.value + 1);
+    if (this.value < this._max) this.writeValue(this.value + 1);
+    console.log(this.value);
   }
 }

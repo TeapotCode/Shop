@@ -2,5 +2,6 @@
   <app-card
     *ngFor="let product of products$ | async; trackBy: trackBy"
     [product]="product"
+    (onBuy)="onBuy($event)"
   ></app-card>
 </div>

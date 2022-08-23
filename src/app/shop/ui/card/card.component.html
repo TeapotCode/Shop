@@ -18,10 +18,13 @@
 
     <ng-container *ngIf="product.inStock !== 0; else notAvailable">
       <div class="block m-auto">
-        <app-count-input [max]="product.inStock"></app-count-input>
+        <app-count-input
+          [max]="product.inStock"
+          [formControl]="count"
+        ></app-count-input>
       </div>
 
-      <button class="btn w-32">Do koszyka</button>
+      <button class="btn w-32" (click)="onAddToCartClick()">Do koszyka</button>
     </ng-container>
   </div>
 </div>

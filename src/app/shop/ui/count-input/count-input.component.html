@@ -1,11 +1,12 @@
-
-<div class="p-2 rounded-full cursor-pointer flex items-center" (click)="minus()" >
-<svg-icon key="minus" [class.invisible]="value < 1"></svg-icon>
+<div
+  class="p-2 rounded-full cursor-pointer flex items-center"
+  (click)="minus()"
+>
+  <svg-icon key="minus" [class.invisible]="value < 1"></svg-icon>
 </div>
 
-<span class="font-black text-xl">{{value}}</span>
+<span class="font-black text-xl">{{ value }}</span>
 
-
-<div class="p-2 rounded-full cursor-pointer flex items-center" (click)="plus()" >
-  <svg-icon key="plus" [class.invisible]="value >= max"></svg-icon>
+<div class="p-2 rounded-full cursor-pointer flex items-center" (click)="plus()">
+  <svg-icon key="plus" [class.invisible]="value >= _max"></svg-icon>
 </div>
