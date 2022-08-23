@@ -4,7 +4,7 @@ export enum ProductCategory {
   FROGS = 'FROGS',
 }
 
-export interface Product {
+export interface ProductIn {
   id: number;
   name: string;
   stars: number;
@@ -14,11 +14,11 @@ export interface Product {
   category: ProductCategory;
 }
 
+export interface Product extends ProductIn {
+  max: number;
+}
+
 export interface ProductChange {
   product: Product;
   count: number;
-}
-
-export interface ProductInCart extends Product {
-  max: number;
 }

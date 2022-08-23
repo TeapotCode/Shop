@@ -19,7 +19,7 @@ export class DrawerComponent {
   numberOfProducts$ = this.store.select(selectCartCount);
   costOfProducts$ = this.store.select(selectCartCostSum);
   productsInCart$ = this.store.select(selectProductsInCart);
-  constructor(private store: Store<ShopState>) {}
+  constructor(private store: Store) {}
 
   remove(productOut: ProductChange) {
     this.store.dispatch(removeFromCart(productOut));

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { Product, ProductCategory } from '../utils/product.interface';
+import { ProductCategory, ProductIn } from '../utils/product.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FakeApiService {
-  readonly stockInitialState: Product[] = [
+  readonly stockInitialState: ProductIn[] = [
     {
       id: 1,
       name: 'Ślimaki w serze',

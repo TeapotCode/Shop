@@ -1,15 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  Product,
-  ProductCategory,
-  ProductInCart,
-} from '../../utils/product.interface';
+import { Product, ProductCategory } from '../../utils/product.interface';
 import * as actions from './shop.action';
 
 export interface ShopState {
   products: Product[];
   filter: ProductCategory[];
-  cart: ProductInCart[];
+  cart: Product[];
 }
 
 const initialState: ShopState = {
@@ -34,12 +30,9 @@ export const shopReducer = createReducer(
       filter: newArray,
     };
   }),
-  on(actions.addToCart, (state, { product, count }) => {
-    const selectedProduct = state.products.find(
-      (_product) => _product.id === product.id
-    );
 
-    //removing inStock from main page
+  on(actions.addToCart, (state, { product, count }) => {
+    //removing stock from main container
     const products: Product[] = state.products.map((_product) => {
       if (_product.id !== product.id) return _product;
       return {
@@ -51,13 +44,11 @@ export const shopReducer = createReducer(
     //adding to cart
 
     if (state.cart.find((_product) => _product.id === product.id)) {
-      const cart = state.cart.map((_product) => {
-        if (_product.id !== product.id) return _product;
-        return {
-          ..._product,
-          inStock: _product.inStock + count,
-        };
-      });
+      const cart = state.cart.map((_product) =>
+        _product.id === product.id
+          ? { ..._product, inStock: _product.inStock + count }
+          : _product
+      );
 
       return {
         ...state,
@@ -71,18 +62,26 @@ export const shopReducer = createReducer(
       products,
       cart: [
         ...state.cart,
-        { ...selectedProduct, inStock: count } as ProductInCart,
+        { ...product, inStock: count, max: product.max } as Product,
       ],
     };
   }),
+
   on(actions.removeFromCart, (state, { product, count }) => {
-    const cart = state.cart.filter((_product) => _product.id !== product.id);
+    let cart = state.cart.map((_product) =>
+      _product.id === product.id
+        ? { ...product, inStock: product.inStock - count }
+        : _product
+    );
 
     const products = state.products.map((_product) =>
       _product.id === product.id
         ? { ..._product, inStock: _product.inStock + count }
         : _product
     );
+
+    if (count >= product.inStock)
+      cart = state.cart.filter((_product) => _product.id !== product.id);
 
     return {
       ...state,

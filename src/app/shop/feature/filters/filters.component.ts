@@ -16,7 +16,7 @@ export class FiltersComponent {
 
   selectedFilters$ = this.store.select(selectFilters);
 
-  constructor(private store: Store<ShopState>) {}
+  constructor(private store: Store) {}
 
   onSelect(key: keyof typeof ProductCategory) {
     this.store.dispatch(toggleFilter({ filter: ProductCategory[key] }));

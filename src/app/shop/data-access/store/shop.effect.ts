@@ -10,7 +10,14 @@ export class ShopEffect {
     return this.actions$.pipe(
       ofType(actions.loadProducts),
       switchMap(() => this.api.getFakeApi()),
-      map((response) => actions.setProducts({ products: response }))
+      map((response) =>
+        actions.setProducts({
+          products: response.map((product) => ({
+            ...product,
+            max: product.inStock,
+          })),
+        })
+      )
     );
   });
 

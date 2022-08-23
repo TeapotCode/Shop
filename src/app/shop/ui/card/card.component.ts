@@ -17,7 +17,13 @@ import { Product, ProductChange } from '../../utils/product.interface';
 export class CardComponent {
   count = new FormControl(1, { nonNullable: true });
 
-  @Input() product: Product | undefined;
+  product: Product | undefined;
+
+  @Input('product')
+  set _product(productIn: Product) {
+    this.product = productIn;
+    if (productIn.inStock === 1) this.count.setValue(1);
+  }
   @Output() onBuy = new EventEmitter<ProductChange>();
 
   AddToCartClick() {

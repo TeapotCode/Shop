@@ -37,4 +37,10 @@ export class CardSmallComponent implements OnInit {
   add() {
     this.onAdd.emit();
   }
+  removeOne() {
+    this.onRemove.emit({
+      product: this.product,
+      count: 1,
+    });
+  }
 }

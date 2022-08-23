@@ -14,5 +14,5 @@ export class ShopComponent {
 
   productsInCart$ = this.store.select(selectCartCount);
 
-  constructor(private store: Store<ShopState>) {}
+  constructor(private store: Store) {}
 }
