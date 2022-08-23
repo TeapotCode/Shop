@@ -1,10 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addToCart, removeFromCart } from '../../data-access/store/shop.action';
-import { ShopState } from '../../data-access/store/shop.reducer';
+import {
+  addToCart,
+  removeFromCart,
+  resetCart,
+} from '../../data-access/store/shop.action';
 import {
   selectCartCostSum,
   selectCartCount,
+  selectCategoriesInCart,
   selectProductsInCart,
 } from '../../data-access/store/shop.select';
 import { Product, ProductChange } from '../../utils/product.interface';
@@ -19,6 +23,9 @@ export class DrawerComponent {
   numberOfProducts$ = this.store.select(selectCartCount);
   costOfProducts$ = this.store.select(selectCartCostSum);
   productsInCart$ = this.store.select(selectProductsInCart);
+
+  categoriesInCart$ = this.store.select(selectCategoriesInCart);
+
   constructor(private store: Store) {}
 
   remove(productOut: ProductChange) {
@@ -27,5 +34,9 @@ export class DrawerComponent {
 
   addProduct(product: Product) {
     this.store.dispatch(addToCart({ product, count: 1 }));
+  }
+
+  clearCart() {
+    this.store.dispatch(resetCart());
   }
 }

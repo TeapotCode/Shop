@@ -1,3 +1,4 @@
+import { act } from '@ngrx/effects';
 import { createReducer, on } from '@ngrx/store';
 import { Product, ProductCategory } from '../../utils/product.interface';
 import * as actions from './shop.action';
@@ -87,6 +88,19 @@ export const shopReducer = createReducer(
       ...state,
       cart,
       products,
+    };
+  }),
+
+  on(actions.resetCart, (state) => {
+    const products = state.products.map((product) => ({
+      ...product,
+      inStock: product.max,
+    }));
+
+    return {
+      ...state,
+      products,
+      cart: [],
     };
   })
 );

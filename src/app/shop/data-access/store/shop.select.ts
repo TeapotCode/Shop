@@ -20,9 +20,8 @@ export const selectFilters = createSelector(
   (state) => state.filter
 );
 
-export const selectCartCount = createSelector(
-  selectFeature,
-  (state) => state.cart.length
+export const selectCartCount = createSelector(selectFeature, (state) =>
+  state.cart.reduce((prev, curr) => prev + curr.inStock, 0)
 );
 
 export const selectCartCostSum = createSelector(selectFeature, (state) =>
@@ -32,4 +31,8 @@ export const selectCartCostSum = createSelector(selectFeature, (state) =>
 export const selectProductsInCart = createSelector(
   selectFeature,
   (state) => state.cart
+);
+
+export const selectCategoriesInCart = createSelector(selectFeature, (state) =>
+  state.cart.reduce((prev, curr) => prev.add(curr.category), new Set())
 );

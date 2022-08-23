@@ -26,3 +26,7 @@ export const removeFromCart = createAction(
   '[Shop] Remove Product From Cart',
   props<ProductChange>()
 );
+
+export const resetCart = createAction(
+  '[Shop] Reset Cart/ Remove All Items From Cart'
+);

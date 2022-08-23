@@ -1,12 +1,19 @@
 <div class="drawer-side flex flex-col content-end w-80 gap-4 h-full">
   <p>Produktów w koszyku: {{ numberOfProducts$ | async }}</p>
   <p>Suma zamówienia: {{ costOfProducts$ | async }} zł</p>
+
+  <button class="btn w-1/2 px-2" (click)="clearCart()">Wyczyść koszyk</button>
   <!-- Sidebar content here -->
-  <div *ngFor="let product of productsInCart$ | async">
-    <app-card-small
-      [product]="product"
-      (onRemove)="remove($event)"
-      (onAdd)="addProduct(product)"
-    ></app-card-small>
-  </div>
+
+  <ng-container *ngFor="let category of categoriesInCart$ | async">
+    <h3 class="text-secondary font-black tracking-widest">{{ category }}</h3>
+    <ng-container *ngFor="let product of productsInCart$ | async">
+      <app-card-small
+        *ngIf="product.category === category"
+        [product]="product"
+        (onRemove)="remove($event)"
+        (onAdd)="addProduct(product)"
+      ></app-card-small>
+    </ng-container>
+  </ng-container>
 </div>

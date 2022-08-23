@@ -1,6 +1,6 @@
 <div class="card w-48 bg-primary-content/5 shadow-xl relative" *ngIf="product">
   <p
-    class="px-2 py-1 bg-warning rounded-badge text-base-300 font-bold text-xl absolute top-3 left-3"
+    class="px-2 py-1 bg-warning rounded-badge text-base-100 font-bold text-xl absolute top-3 left-3"
   >
     {{ product.price }} zł
   </p>
@@ -19,6 +19,7 @@
     <ng-container *ngIf="product.inStock !== 0; else notAvailable">
       <app-count-input
         [max]="product.inStock"
+        [min]="1"
         [formControl]="count"
       ></app-count-input>
 
