@@ -28,3 +28,5 @@ export const toggleFilter = createAction(
   '[Database] Toggle filter',
   props<{ filter: ProductCategory }>()
 );
+
+export const resetMax = createAction('[Database] Reset max values');

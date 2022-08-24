@@ -14,9 +14,10 @@ export const selectFilters = createSelector(
   (state) => state.filters
 );
 
-export const selectDatabaseFiltered = createSelector(selectFeature, (state) => {
-  if (!state.filters.length) return state.products;
-  return state.products.filter((product) =>
-    state.filters.includes(product.category)
-  );
-});
+export const selectDatabaseFiltered = createSelector(selectFeature, (state) =>
+  state.filters.length
+    ? state.products.filter((product) =>
+        state.filters.includes(product.category)
+      )
+    : state.products
+);

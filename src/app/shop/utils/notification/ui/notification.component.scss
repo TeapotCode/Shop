@@ -1,17 +1,8 @@
 :host {
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 14px;
+  @apply alert alert-success;
+
   transform-origin: top right;
   animation: pop 0.3s;
-
-  &.success {
-    background-color: rgba(177, 255, 89, 0.5);
-  }
-
-  &.error {
-    background-color: rgba(255, 0, 0, 0.5);
-  }
 }
 
 @keyframes pop {

@@ -13,6 +13,7 @@ import {
   loadDatabase,
   removeFromDatabase,
   resetDatabase,
+  resetMax,
   toggleFilter,
 } from './database/database.action';
 import {
@@ -33,6 +34,7 @@ export class ShopFacadeService {
 
   buyCart() {
     this.store.dispatch(clearCart());
+    this.store.dispatch(resetMax());
   }
 
   toggleFilter(filter: ProductCategory) {

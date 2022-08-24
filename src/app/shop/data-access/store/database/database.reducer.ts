@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { Product, ProductCategory } from 'src/app/shop/utils/product.interface';
 import * as databaseActions from './database.action';
@@ -62,9 +63,13 @@ export const databaseReducer = createReducer(
       ...product,
       inStock: product.max,
     })),
+  })),
+
+  on(databaseActions.resetMax, (state) => ({
+    ...state,
+    products: state.products.map((product) => ({
+      ...product,
+      max: product.inStock,
+    })),
   }))
 );
-
-// export function reducer(state: State | undefined, action: Action) {
-//   return databaseReducer(state, action);
-// }

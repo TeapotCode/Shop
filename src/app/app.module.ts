@@ -51,6 +51,7 @@ const rootReducers = {
   ],
   imports: [
     BrowserModule,
+    NotificationModule,
     ReactiveFormsModule,
     SvgIconsModule.forRoot({ icons: [appMinusIcon, appPlusIcon, appBinIcon] }),
     StoreModule.forRoot(rootReducers),

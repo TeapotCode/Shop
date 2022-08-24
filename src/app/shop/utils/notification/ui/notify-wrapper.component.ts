@@ -1,22 +1,10 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-notify-wrapper',
   template: ``,
-  styles: [`
-    :host {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    pointer-events: none;
-    align-items: flex-end;
-  }
-  `]
+  styleUrls: ['./notify-wrapper.component.scss'],
 })
 export class NotifyWrapperComponent {
-  constructor() {
-  }
+  constructor() {}
 }
