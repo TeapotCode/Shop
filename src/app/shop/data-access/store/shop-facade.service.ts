@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductCategory, ProductChange } from '../../utils/product.interface';
-import { addToCart, clearCart, removeFromCart } from './cart/cart.action';
+import {
+  addProductToCart,
+  buyProductsInCart,
+  changeInCart,
+  clearCart,
+  removeFromCart,
+} from './cart/cart.action';
 import {
   selectCartCategories,
   selectCartCostSum,
   selectCartCount,
   selectCartProducts,
 } from './cart/cart.select';
-import {
-  addToDatabase,
-  loadDatabase,
-  removeFromDatabase,
-  resetDatabase,
-  resetMax,
-  toggleFilter,
-} from './database/database.action';
+import { loadDatabase, toggleFilter } from './database/database.action';
 import {
   selectDatabase,
   selectDatabaseFiltered,
@@ -32,28 +31,28 @@ export class ShopFacadeService {
     this.store.dispatch(loadDatabase());
   }
 
-  buyCart() {
-    this.store.dispatch(clearCart());
-    this.store.dispatch(resetMax());
-  }
-
   toggleFilter(filter: ProductCategory) {
     this.store.dispatch(toggleFilter({ filter }));
   }
 
+  changeInCart(productChange: ProductChange) {
+    this.store.dispatch(changeInCart(productChange));
+  }
+
+  buyCart() {
+    this.store.dispatch(buyProductsInCart());
+  }
+
   addToCart(productChange: ProductChange) {
-    this.store.dispatch(addToCart(productChange));
-    this.store.dispatch(removeFromDatabase(productChange));
+    this.store.dispatch(addProductToCart(productChange));
   }
 
   removeFromCart(productChange: ProductChange) {
     this.store.dispatch(removeFromCart(productChange));
-    this.store.dispatch(addToDatabase(productChange));
   }
 
   clearCart() {
     this.store.dispatch(clearCart());
-    this.store.dispatch(resetDatabase());
   }
 
   get database$() {

@@ -1,5 +1,5 @@
 :host {
-  @apply toast;
-  right: 0;
-  top: 10px;
+  @apply fixed flex flex-col gap-4;
+  right: 60px;
+  top: 5px;
 }

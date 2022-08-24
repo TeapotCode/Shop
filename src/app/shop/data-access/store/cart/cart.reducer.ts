@@ -14,7 +14,7 @@ export const cartFeatureKey = 'cart';
 
 export const cartReducer = createReducer(
   initialState,
-  on(cartActions.addToCart, (state, { product, count }) => {
+  on(cartActions.addProductToCart, (state, { product, count }) => {
     const cart = state.cart.find((_product) => _product.id === product.id)
       ? state.cart.map((_product) =>
           _product.id === product.id
@@ -35,6 +35,18 @@ export const cartReducer = createReducer(
       .filter((_product) => _product.inStock > 0);
 
     return { ...state, cart };
+  }),
+  on(cartActions.buyProductsInCart, (state) => ({ ...state, cart: [] })),
+  on(cartActions.changeInCart, (state, { product, count }) => {
+    const cart = state.cart.map((_product) =>
+      _product.id === product.id
+        ? { ..._product, inStock: _product.inStock + count }
+        : _product
+    );
+    return {
+      ...state,
+      cart,
+    };
   }),
   on(cartActions.clearCart, (state) => ({ ...state, cart: [] }))
 );

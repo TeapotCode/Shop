@@ -24,6 +24,7 @@ import { NotifyWrapperComponent } from './ui/notify-wrapper.component';
 })
 export class NotifyService implements OnDestroy {
   private notifyComp: ComponentRef<NotifyWrapperComponent> | undefined;
+  private comp: ComponentRef<NotificationComponent> | undefined;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -41,23 +42,32 @@ export class NotifyService implements OnDestroy {
     ).attach(new ComponentPortal(component));
   }
 
-  notify(type: NotificationType, message: string, duration: number = 4000) {
+  timeoutRef: ReturnType<typeof setTimeout> | undefined;
+
+  notify(
+    message: string,
+    type: NotificationType = 'success',
+    duration: number = 5000
+  ) {
     if (!this.notifyComp)
       this.notifyComp = this.createInPlace(
         this.document.body,
         NotifyWrapperComponent
       );
 
-    const comp = this.createInPlace(
+    this.comp && this.comp.destroy();
+
+    this.comp = this.createInPlace(
       this.notifyComp.location.nativeElement,
       NotificationComponent
     );
 
-    comp.setInput('type', type);
-    comp.setInput('message', message);
+    this.comp.setInput('type', type);
+    this.comp.setInput('message', message);
 
-    setTimeout(() => {
-      comp.destroy();
+    clearTimeout(this.timeoutRef);
+    this.timeoutRef = setTimeout(() => {
+      this.comp && this.comp.destroy();
     }, duration);
   }
 

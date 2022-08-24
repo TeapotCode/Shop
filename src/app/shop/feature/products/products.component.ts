@@ -8,14 +8,10 @@ import { Product, ProductChange } from '../../utils/product.interface';
   styleUrls: ['./products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   products$ = this.shop.databaseFiltered$;
 
   constructor(private shop: ShopFacadeService) {}
-
-  ngOnInit(): void {
-    this.shop.loadDatabase();
-  }
 
   trackBy(index: number, product: Product) {
     return product.id;

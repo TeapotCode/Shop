@@ -34,9 +34,9 @@ export class CardSmallComponent implements OnInit {
   }
 
   add() {
-    this.shop.addToCart({ product: this.product, count: 1 });
+    this.shop.changeInCart({ product: this.product, count: 1 });
   }
   removeOne() {
-    this.shop.removeFromCart({ product: this.product, count: 1 });
+    this.shop.changeInCart({ product: this.product, count: -1 });
   }
 }
