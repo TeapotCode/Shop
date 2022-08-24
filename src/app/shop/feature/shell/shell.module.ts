@@ -9,7 +9,6 @@ import {
   cartFeatureKey,
   cartReducer,
 } from '../../data-access/store/cart/cart.reducer';
-import { DatabaseEffect } from '../../data-access/store/database/database.effect';
 import {
   databaseFeatureKey,
   databaseReducer,
@@ -21,7 +20,7 @@ import { NavbarComponent } from '../../ui/navbar/navbar.component';
 import { StarsComponent } from '../../ui/stars/stars.component';
 import { NotificationModule } from '../../utils/notification/notification.module';
 import { DrawerComponent } from '../drawer/drawer.component';
-import { FiltersComponent } from '../filters/filters.component';
+import { FiltersComponent } from '../../ui/filters/filters.component';
 import { ProductsComponent } from '../products/products.component';
 import { ShopComponent } from '../shop/shop.component';
 import { ShellRoutingModule } from './shell-routing.module';
@@ -46,7 +45,7 @@ import { ShellRoutingModule } from './shell-routing.module';
     SvgIconsModule,
     StoreModule.forFeature(cartFeatureKey, cartReducer),
     StoreModule.forFeature(databaseFeatureKey, databaseReducer),
-    EffectsModule.forFeature([DatabaseEffect, CartEffect]),
+    EffectsModule.forFeature([CartEffect]),
   ],
 })
 export class ShellModule {}

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
 
 @Component({
@@ -7,10 +7,15 @@ import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
   styleUrls: ['./shop.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShopComponent {
-  showDrawer: boolean = true;
+export class ShopComponent implements OnInit {
+  showDrawer: boolean = false;
 
   productsInCart$ = this.shop.cartCount$;
 
   constructor(private shop: ShopFacadeService) {}
+  ngOnInit(): void {
+    if (innerWidth > 900) {
+      this.showDrawer = true;
+    }
+  }
 }
