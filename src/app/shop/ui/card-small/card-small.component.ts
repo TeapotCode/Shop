@@ -1,13 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
   OnInit,
-  Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Product, ProductChange } from '../../utils/product.interface';
+import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
+import { Product } from '../../utils/product.interface';
 
 @Component({
   selector: 'app-card-small',
@@ -19,14 +18,14 @@ export class CardSmallComponent implements OnInit {
   count = new FormControl(0, { nonNullable: true });
 
   @Input() product!: Product;
-  @Output() onRemove = new EventEmitter<ProductChange>();
-  @Output() onAdd = new EventEmitter<void>();
   @Input() maxStock!: number;
 
+  constructor(private shop: ShopFacadeService) {}
+
   removeProduct() {
-    this.onRemove.emit({
+    this.shop.removeFromCart({
       product: this.product,
-      count: this.count.value,
+      count: this.product.inStock,
     });
   }
 
@@ -35,12 +34,9 @@ export class CardSmallComponent implements OnInit {
   }
 
   add() {
-    this.onAdd.emit();
+    this.shop.addToCart({ product: this.product, count: 1 });
   }
   removeOne() {
-    this.onRemove.emit({
-      product: this.product,
-      count: 1,
-    });
+    this.shop.removeFromCart({ product: this.product, count: 1 });
   }
 }

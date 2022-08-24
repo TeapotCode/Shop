@@ -1,8 +1,13 @@
 import {
-  shopReducer,
-  shopReducerKey,
-} from './shop/data-access/store/shop.reducer';
+  cartFeatureKey,
+  cartReducer,
+} from './shop/data-access/store/cart/cart.reducer';
+import {
+  databaseFeatureKey,
+  databaseReducer,
+} from './shop/data-access/store/database/database.reducer';
 
 export const rootReducers = {
-  [shopReducerKey]: shopReducer,
+  [cartFeatureKey]: cartReducer,
+  [databaseFeatureKey]: databaseReducer,
 };

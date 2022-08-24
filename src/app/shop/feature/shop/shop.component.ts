@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { ShopState } from '../../data-access/store/shop.reducer';
-import { selectCartCount } from '../../data-access/store/shop.select';
+import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
 
 @Component({
   selector: 'app-shop',
@@ -12,7 +10,7 @@ import { selectCartCount } from '../../data-access/store/shop.select';
 export class ShopComponent {
   showDrawer: boolean = true;
 
-  productsInCart$ = this.store.select(selectCartCount);
+  productsInCart$ = this.shop.cartCount$;
 
-  constructor(private store: Store) {}
+  constructor(private shop: ShopFacadeService) {}
 }

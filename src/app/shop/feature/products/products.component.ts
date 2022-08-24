@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { addToCart, loadProducts } from '../../data-access/store/shop.action';
-import { selectFilteredProducts } from '../../data-access/store/shop.select';
+import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
 import { Product, ProductChange } from '../../utils/product.interface';
 
 @Component({
@@ -11,12 +9,12 @@ import { Product, ProductChange } from '../../utils/product.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit {
-  products$ = this.store.select(selectFilteredProducts);
+  products$ = this.shop.databaseFiltered$;
 
-  constructor(private store: Store) {}
+  constructor(private shop: ShopFacadeService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadProducts());
+    this.shop.loadDatabase();
   }
 
   trackBy(index: number, product: Product) {
@@ -24,6 +22,6 @@ export class ProductsComponent implements OnInit {
   }
 
   onBuy({ product, count }: ProductChange) {
-    this.store.dispatch(addToCart({ product, count }));
+    this.shop.addToCart({ product, count });
   }
 }

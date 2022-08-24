@@ -7,7 +7,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { ShopEffect } from './shop/data-access/store/shop.effect';
 import { ProductsComponent } from './shop/feature/products/products.component';
 import { ShopComponent } from './shop/feature/shop/shop.component';
 import { CardComponent } from './shop/ui/card/card.component';
@@ -23,6 +22,7 @@ import { NotificationModule } from './shop/utils/notification/notification.modul
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardSmallComponent } from './shop/ui/card-small/card-small.component';
 import { appBinIcon } from './svg/bin';
+import { DatabaseEffect } from './shop/data-access/store/database/database.effect';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { appBinIcon } from './svg/bin';
     ReactiveFormsModule,
     SvgIconsModule.forRoot({ icons: [appMinusIcon, appPlusIcon, appBinIcon] }),
     StoreModule.forRoot(rootReducers),
-    EffectsModule.forRoot([ShopEffect]),
+    EffectsModule.forRoot([DatabaseEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

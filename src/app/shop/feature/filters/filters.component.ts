@@ -1,8 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { toggleFilter } from '../../data-access/store/shop.action';
-import { ShopState } from '../../data-access/store/shop.reducer';
-import { selectFilters } from '../../data-access/store/shop.select';
+import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
 import { ProductCategory } from '../../utils/product.interface';
 
 @Component({
@@ -14,11 +11,11 @@ import { ProductCategory } from '../../utils/product.interface';
 export class FiltersComponent {
   productCategory = ProductCategory;
 
-  selectedFilters$ = this.store.select(selectFilters);
+  selectedFilters$ = this.shop.filters$;
 
-  constructor(private store: Store) {}
+  constructor(private shop: ShopFacadeService) {}
 
   onSelect(key: keyof typeof ProductCategory) {
-    this.store.dispatch(toggleFilter({ filter: ProductCategory[key] }));
+    this.shop.toggleFilter(this.productCategory[key]);
   }
 }

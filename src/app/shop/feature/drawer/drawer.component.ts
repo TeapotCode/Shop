@@ -1,17 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import {
-  addToCart,
-  removeFromCart,
-  resetCart,
-} from '../../data-access/store/shop.action';
-import {
-  selectCartCostSum,
-  selectCartCount,
-  selectCategoriesInCart,
-  selectProductsInCart,
-} from '../../data-access/store/shop.select';
-import { Product, ProductChange } from '../../utils/product.interface';
+import { ShopFacadeService } from '../../data-access/store/shop-facade.service';
 
 @Component({
   selector: 'app-drawer',
@@ -20,23 +8,19 @@ import { Product, ProductChange } from '../../utils/product.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerComponent {
-  numberOfProducts$ = this.store.select(selectCartCount);
-  costOfProducts$ = this.store.select(selectCartCostSum);
-  productsInCart$ = this.store.select(selectProductsInCart);
+  numberOfProducts$ = this.shop.cartCount$;
+  costOfProducts$ = this.shop.cartCost$;
+  productsInCart$ = this.shop.cart$;
 
-  categoriesInCart$ = this.store.select(selectCategoriesInCart);
+  categoriesInCart$ = this.shop.categoriesInCart$;
 
-  constructor(private store: Store) {}
-
-  remove(productOut: ProductChange) {
-    this.store.dispatch(removeFromCart(productOut));
-  }
-
-  addProduct(product: Product) {
-    this.store.dispatch(addToCart({ product, count: 1 }));
-  }
+  constructor(private shop: ShopFacadeService) {}
 
   clearCart() {
-    this.store.dispatch(resetCart());
+    this.shop.clearCart();
+  }
+
+  buy() {
+    this.shop.buyCart();
   }
 }

@@ -11,9 +11,15 @@
       <app-card-small
         *ngIf="product.category === category"
         [product]="product"
-        (onRemove)="remove($event)"
-        (onAdd)="addProduct(product)"
       ></app-card-small>
     </ng-container>
   </ng-container>
+
+  <button
+    *ngIf="numberOfProducts$ | async"
+    class="btn w-1/2 px-2 bg-primary text-primary-content"
+    (click)="buy()"
+  >
+    Zamów
+  </button>
 </div>

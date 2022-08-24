@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { FakeApiService } from '../fake-api.service';
-import * as actions from './shop.action';
+import { FakeApiService } from '../../fake-api.service';
+import * as actions from './database.action';
 
 @Injectable()
-export class ShopEffect {
+export class DatabaseEffect {
   loadProducts$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(actions.loadProducts),
+      ofType(actions.loadDatabase),
       switchMap(() => this.api.getFakeApi()),
       map((response) =>
-        actions.setProducts({
+        actions.setDatabase({
           products: response.map((product) => ({
             ...product,
             max: product.inStock,
@@ -20,12 +20,6 @@ export class ShopEffect {
       )
     );
   });
-
-  // showToast$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(actions.addToCart, actions.removeFromCart)
-  //   );
-  // });
 
   constructor(private actions$: Actions, private api: FakeApiService) {}
 }
