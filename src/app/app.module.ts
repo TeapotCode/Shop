@@ -14,7 +14,6 @@ import { CountInputComponent } from './shop/ui/count-input/count-input.component
 import { DrawerComponent } from './shop/feature/drawer/drawer.component';
 import { NavbarComponent } from './shop/ui/navbar/navbar.component';
 import { StarsComponent } from './shop/ui/stars/stars.component';
-import { rootReducers } from './store';
 import { appMinusIcon } from './svg/minus';
 import { appPlusIcon } from './svg/plus';
 import { FiltersComponent } from './shop/feature/filters/filters.component';
@@ -23,6 +22,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardSmallComponent } from './shop/ui/card-small/card-small.component';
 import { appBinIcon } from './svg/bin';
 import { DatabaseEffect } from './shop/data-access/store/database/database.effect';
+import {
+  cartFeatureKey,
+  cartReducer,
+} from './shop/data-access/store/cart/cart.reducer';
+import {
+  databaseFeatureKey,
+  databaseReducer,
+} from './shop/data-access/store/database/database.reducer';
+
+const rootReducers = {
+  [cartFeatureKey]: cartReducer,
+  [databaseFeatureKey]: databaseReducer,
+};
 
 @NgModule({
   declarations: [
