@@ -1,5 +1,5 @@
 :host {
-  @apply alert alert-success self-end;
+  @apply alert alert-success self-end z-20;
 
   transform-origin: top right;
   animation: pop 0.3s;

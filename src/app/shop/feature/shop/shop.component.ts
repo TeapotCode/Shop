@@ -14,7 +14,8 @@ export class ShopComponent implements OnInit {
 
   constructor(private shop: ShopFacadeService) {}
   ngOnInit(): void {
-    if (innerWidth > 900) {
+    //Magic number
+    if (innerWidth > 1044) {
       this.showDrawer = true;
     }
   }

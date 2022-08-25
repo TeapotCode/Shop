@@ -1,4 +1,4 @@
-<div class="flex flex-grow flex-wrap gap-8">
+<div class="grid grid-custom gap-6">
   <app-card
     *ngFor="let product of products$ | async; trackBy: trackBy"
     [product]="product"
