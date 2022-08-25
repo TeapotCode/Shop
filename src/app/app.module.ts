@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { SvgIconsModule } from '@ngneat/svg-icon';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -9,9 +8,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { appBinIcon } from './svg/bin';
-import { appMinusIcon } from './svg/minus';
-import { appPlusIcon } from './svg/plus';
+import { appBinIcon } from './icons/bin';
+import { appMinusIcon } from './icons/minus';
+import { appPlusIcon } from './icons/plus';
 import { OrderCompleteComponent } from './shop/feature/order-complete/order-complete.component';
 
 @NgModule({

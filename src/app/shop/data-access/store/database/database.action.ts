@@ -12,6 +12,6 @@ export const setDatabase = createAction(
 );
 
 export const toggleFilter = createAction(
-  '[Database] Toggle filter',
+  '[Menu page] Toggle filter',
   props<{ filter: ProductCategory }>()
 );

@@ -1,6 +1,9 @@
-<div class="card w-48 bg-primary-content/5 shadow-xl relative" *ngIf="product">
+<div
+  class="rounded-2xl overflow-hidden w-48 bg-primary-content/5 shadow-xl relative"
+  *ngIf="product"
+>
   <p
-    class="px-2 py-1 bg-warning rounded-badge text-base-100 font-bold text-xl absolute top-3 left-3"
+    class="px-2 py-1 bg-warning rounded-2xl text-base-100 font-bold text-xl absolute top-3 left-3"
   >
     {{ product.price }} zł
   </p>
@@ -8,8 +11,10 @@
   <figure>
     <img src="assets/{{ product.imgName }}" alt="Zdjęcie {{ product.name }}" />
   </figure>
-  <div class="card-body p-5 items-center">
-    <h2 class="card-title text-center">{{ product.name }}</h2>
+  <div class="flex flex-col gap-2 p-5 items-center">
+    <h2 class="font-semibold text-xl text-center">
+      {{ product.name }}
+    </h2>
 
     <app-stars [rating]="product.stars" class="pointer-events-none"></app-stars>
 
