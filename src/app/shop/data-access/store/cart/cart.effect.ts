@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs';
-import { NotifyService } from 'src/app/shop/utils/notification/notify.service';
 import * as cartActions from './cart.action';
+import { NotifyService } from '../../../utils/notification/notify.service';
 
 @Injectable()
-export class CartEffect {
+export class CartEffects {
   addProductToCart$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -41,7 +41,7 @@ export class CartEffect {
         ofType(cartActions.changeInCart),
         tap(({ product, count }) => {
           this.toast.notify(
-            `Pomyślnie ${count > 0 ? 'zwiększono' : 'zmniejszono'} ilość ${
+            `Pomyślnie ${count > 0 ? 'zwiększonpo' : 'zmniejszono'} ilość ${
               product.name
             } w koszyku`
           );

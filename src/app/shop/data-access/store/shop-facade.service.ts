@@ -16,8 +16,8 @@ import {
 } from './cart/cart.select';
 import { loadDatabase, toggleFilter } from './database/database.action';
 import {
-  selectDatabase,
-  selectDatabaseFiltered,
+  selectProducts,
+  selectProductsFiltered,
   selectFilters,
 } from './database/database.select';
 
@@ -56,7 +56,7 @@ export class ShopFacadeService {
   }
 
   get database$() {
-    return this.store.select(selectDatabase);
+    return this.store.select(selectProducts);
   }
 
   get filters$() {
@@ -64,7 +64,7 @@ export class ShopFacadeService {
   }
 
   get databaseFiltered$() {
-    return this.store.select(selectDatabaseFiltered);
+    return this.store.select(selectProductsFiltered);
   }
 
   get cartCost$() {

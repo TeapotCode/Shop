@@ -6,7 +6,7 @@ export interface CartState {
   cart: Product[];
 }
 
-const initialState: CartState = {
+export const initialState: CartState = {
   cart: [],
 };
 
@@ -25,14 +25,8 @@ export const cartReducer = createReducer(
 
     return { ...state, cart };
   }),
-  on(cartActions.removeFromCart, (state, { product, count }) => {
-    const cart = state.cart
-      .map((_product) =>
-        _product.id === product.id
-          ? { ..._product, inStock: _product.inStock - count }
-          : _product
-      )
-      .filter((_product) => _product.inStock > 0);
+  on(cartActions.removeFromCart, (state, { product }) => {
+    const cart = state.cart.filter((_product) => _product.id !== product.id);
 
     return { ...state, cart };
   }),
@@ -43,6 +37,7 @@ export const cartReducer = createReducer(
         ? { ..._product, inStock: _product.inStock + count }
         : _product
     );
+
     return {
       ...state,
       cart,

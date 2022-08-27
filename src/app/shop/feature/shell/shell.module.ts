@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SvgIconsModule } from '@ngneat/svg-icon';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { CartEffect } from '../../data-access/store/cart/cart.effect';
+import { CartEffects } from '../../data-access/store/cart/cart.effect';
 import {
   cartFeatureKey,
   cartReducer,
@@ -45,7 +45,7 @@ import { ShellRoutingModule } from './shell-routing.module';
     SvgIconsModule,
     StoreModule.forFeature(cartFeatureKey, cartReducer),
     StoreModule.forFeature(databaseFeatureKey, databaseReducer),
-    EffectsModule.forFeature([CartEffect]),
+    EffectsModule.forFeature([CartEffects]),
   ],
 })
 export class ShellModule {}

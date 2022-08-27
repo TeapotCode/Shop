@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { Product, ProductCategory } from 'src/app/shop/utils/product.interface';
+
 import * as cartActions from '../cart/cart.action';
 import * as databaseActions from './database.action';
+import { Product, ProductCategory } from '../../../utils/product.interface';
 
 export interface DatabaseState {
   products: Product[];
-  filters: ProductCategory[];
+  filters: Set<ProductCategory>;
 }
 
 const initialState: DatabaseState = {
@@ -121,7 +122,7 @@ const initialState: DatabaseState = {
       max: 2,
     },
   ],
-  filters: [],
+  filters: new Set(),
 };
 
 export const databaseFeatureKey = 'database';
@@ -134,13 +135,13 @@ export const databaseReducer = createReducer(
   })),
 
   on(databaseActions.toggleFilter, (state, { filter }) => {
-    const newArray = state.filters.includes(filter)
-      ? state.filters.filter((prod) => prod !== filter)
-      : [...state.filters, filter];
+    const newState = new Set(state.filters);
+
+    state.filters.has(filter) ? newState.delete(filter) : newState.add(filter);
 
     return {
       ...state,
-      filters: newArray,
+      filters: newState,
     };
   }),
 

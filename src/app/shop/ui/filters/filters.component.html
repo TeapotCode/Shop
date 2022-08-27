@@ -3,7 +3,7 @@
     <button
       class="btn btn-warning"
       (click)="onSelect(enum.value)"
-      [class.btn-outline]="!filters.includes(enum.value)"
+      [class.btn-outline]="!filters.has(enum.value)"
     >
       {{ enum.value }}
     </button>

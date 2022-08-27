@@ -4,7 +4,7 @@ import { databaseFeatureKey, DatabaseState } from './database.reducer';
 export const selectFeature =
   createFeatureSelector<DatabaseState>(databaseFeatureKey);
 
-export const selectDatabase = createSelector(
+export const selectProducts = createSelector(
   selectFeature,
   (state) => state.products
 );
@@ -14,10 +14,8 @@ export const selectFilters = createSelector(
   (state) => state.filters
 );
 
-export const selectDatabaseFiltered = createSelector(selectFeature, (state) =>
-  state.filters.length
-    ? state.products.filter((product) =>
-        state.filters.includes(product.category)
-      )
+export const selectProductsFiltered = createSelector(selectFeature, (state) =>
+  state.filters.size
+    ? state.products.filter((product) => state.filters.has(product.category))
     : state.products
 );

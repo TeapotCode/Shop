@@ -4,10 +4,10 @@ import {
   ProductIn,
 } from 'src/app/shop/utils/product.interface';
 
-export const loadDatabase = createAction('[Database] Load request');
+export const loadDatabase = createAction('[Database] Load products');
 
 export const setDatabase = createAction(
-  '[Database] Set database',
+  '[Database] Set products',
   props<{ products: ProductIn[] }>()
 );
 
