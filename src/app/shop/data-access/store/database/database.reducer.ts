@@ -129,10 +129,6 @@ export const databaseFeatureKey = 'database';
 
 export const databaseReducer = createReducer(
   initialState,
-  on(databaseActions.setDatabase, (state, { products }) => ({
-    ...state,
-    products: products.map((product) => ({ ...product, max: product.inStock })),
-  })),
 
   on(databaseActions.toggleFilter, (state, { filter }) => {
     const newState = new Set(state.filters);
