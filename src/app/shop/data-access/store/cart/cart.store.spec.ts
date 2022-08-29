@@ -12,7 +12,7 @@ import {
 import { ShopFacadeService } from '../shop-facade.service';
 import * as cartActions from './cart.action';
 import { CartEffects } from './cart.effect';
-import { CartState } from './cart.reducer';
+import { CartState, initialState } from './cart.reducer';
 import * as cartSelector from './cart.select';
 import * as fromReducer from './cart.reducer';
 import { Product } from '../../../utils/product.interface';
@@ -166,8 +166,11 @@ describe('CartStore', () => {
     });
 
     it('should add product to cart', () => {
-      const { initialState } = fromReducer;
-      const newState: CartState = { cart: [EXAMPLE_PRODUCT] };
+      const placeholderProduct = new ProductMock({ id: 99 }).model();
+      const initialState: CartState = { cart: [placeholderProduct] };
+      const newState: CartState = {
+        cart: [placeholderProduct, EXAMPLE_PRODUCT],
+      };
       const action = cartActions.addProductToCart({
         product: EXAMPLE_PRODUCT,
         count: EXAMPLE_PRODUCT.inStock,
@@ -202,9 +205,13 @@ describe('CartStore', () => {
     });
 
     it('should change stock of product in cart', () => {
-      const initialState = { cart: [EXAMPLE_PRODUCT] };
+      const placeholderProduct = new ProductMock({ id: 99 }).model();
+      const initialState = { cart: [placeholderProduct, EXAMPLE_PRODUCT] };
       const newState: CartState = {
-        cart: [{ ...EXAMPLE_PRODUCT, inStock: EXAMPLE_PRODUCT.inStock + 1 }],
+        cart: [
+          placeholderProduct,
+          { ...EXAMPLE_PRODUCT, inStock: EXAMPLE_PRODUCT.inStock + 1 },
+        ],
       };
       const action = cartActions.changeInCart({
         product: EXAMPLE_PRODUCT,
@@ -227,9 +234,13 @@ describe('CartStore', () => {
     });
 
     it('should add stock if product already in cart', () => {
-      const initialState = { cart: [EXAMPLE_PRODUCT] };
+      const placeholderProduct = new ProductMock({ id: 99 }).model();
+      const initialState = { cart: [placeholderProduct, EXAMPLE_PRODUCT] };
       const newState: CartState = {
-        cart: [{ ...EXAMPLE_PRODUCT, inStock: EXAMPLE_PRODUCT.inStock + 3 }],
+        cart: [
+          placeholderProduct,
+          { ...EXAMPLE_PRODUCT, inStock: EXAMPLE_PRODUCT.inStock + 3 },
+        ],
       };
       const action = cartActions.addProductToCart({
         product: EXAMPLE_PRODUCT,

@@ -41,7 +41,7 @@ export class CartEffects {
         ofType(cartActions.changeInCart),
         tap(({ product, count }) => {
           this.toast.notify(
-            `Pomyślnie ${count > 0 ? 'zwiększonpo' : 'zmniejszono'} ilość ${
+            `Pomyślnie ${count > 0 ? 'zwiększono' : 'zmniejszono'} ilość ${
               product.name
             } w koszyku`
           );

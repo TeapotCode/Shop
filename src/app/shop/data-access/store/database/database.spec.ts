@@ -72,7 +72,7 @@ describe('DatabaseStore', () => {
   });
 
   describe('DatabaseReducer', () => {
-    describe('test filter', () => {
+    describe('filter', () => {
       it('should add to filter if empty', () => {
         const initialState: DatabaseState = {
           products: [],
@@ -131,15 +131,21 @@ describe('DatabaseStore', () => {
       });
     });
 
-    describe('test product related action', () => {
+    describe('product related action', () => {
       it('should add inStock to product on removing from cart', () => {
         const product = new ProductMock({ inStock: 10 }).model();
+
+        const placeholderProduct = new ProductMock({ id: 99 }).model();
+
         const initialState = {
-          products: [product],
+          products: [placeholderProduct, product],
           filters: new Set([]),
         };
         const newState = {
-          products: [new ProductMock({ inStock: 12 }).model()],
+          products: [
+            placeholderProduct,
+            new ProductMock({ inStock: 12 }).model(),
+          ],
           filters: new Set([]),
         };
 
@@ -152,12 +158,17 @@ describe('DatabaseStore', () => {
 
       it('should remove inStock from product on adding to cart', () => {
         const product = new ProductMock({ inStock: 10 }).model();
+        const placeholderProduct = new ProductMock({ id: 99 }).model();
+
         const initialState = {
-          products: [product],
+          products: [placeholderProduct, product],
           filters: new Set([]),
         };
         const newState = {
-          products: [new ProductMock({ inStock: 8 }).model()],
+          products: [
+            placeholderProduct,
+            new ProductMock({ inStock: 8 }).model(),
+          ],
           filters: new Set([]),
         };
 
@@ -170,12 +181,18 @@ describe('DatabaseStore', () => {
 
       it('should change inStock on change in cart', () => {
         const product = new ProductMock({ inStock: 10 }).model();
+
+        const placeholderProduct = new ProductMock({ id: 99 }).model();
+
         const initialState = {
-          products: [product],
+          products: [placeholderProduct, product],
           filters: new Set([]),
         };
         const newState = {
-          products: [new ProductMock({ inStock: 9 }).model()],
+          products: [
+            placeholderProduct,
+            new ProductMock({ inStock: 9 }).model(),
+          ],
           filters: new Set([]),
         };
 
