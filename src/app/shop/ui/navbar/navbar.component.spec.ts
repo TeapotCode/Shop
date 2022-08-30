@@ -20,24 +20,20 @@ describe('NavbarComponent', () => {
     component.cardItems = 3;
     fixture.detectChanges();
 
-    const badge = fixture.nativeElement.querySelector(
-      '.badge'
-    ) as HTMLSpanElement;
+    const span = fixture.nativeElement.querySelector('span') as HTMLSpanElement;
 
-    expect(badge).toBeDefined();
-    expect(badge).not.toBeNull();
-    expect(badge.innerHTML).toBe('3');
+    expect(span).toBeDefined();
+    expect(span).not.toBeNull();
+    expect(span.innerHTML).toBe('3');
   });
 
   it('should NOT show badge if items greater than 0', () => {
     component.cardItems = 0;
     fixture.detectChanges();
 
-    const badge = fixture.nativeElement.querySelector(
-      '.badge'
-    ) as HTMLSpanElement;
+    const span = fixture.nativeElement.querySelector('span') as HTMLSpanElement;
 
-    expect(badge).toBeNull();
+    expect(span).toBeNull();
   });
 
   it('should emit output on cart click', () => {

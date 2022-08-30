@@ -1,14 +1,14 @@
-<div class="navbar">
+<div class="p-2 items-center flex min-h-16">
   <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">Les Escargots</a>
+    <h1 class="text-xl font-semibold px-2">Les Escargots</h1>
   </div>
   <div class="flex-none">
     <label
       tabindex="0"
-      class="btn btn-ghost btn-circle"
+      class="h-12 w-12 rounded-full active:focus:bg-primary-content/5 cursor-pointer flex justify-center align-middle"
       (click)="onCartClick()"
     >
-      <div class="indicator">
+      <div class="flex items-center pointer-events-none relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5"
@@ -23,9 +23,11 @@
             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
           />
         </svg>
-        <span *ngIf="cardItems > 0" class="badge badge-sm indicator-item">{{
-          cardItems
-        }}</span>
+        <span
+          *ngIf="cardItems > 0"
+          class="absolute top-1 -right-3 bg-black px-2 rounded-full text-xs font-semibold"
+          >{{ cardItems }}</span
+        >
       </div>
     </label>
   </div>
