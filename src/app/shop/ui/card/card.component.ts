@@ -22,8 +22,10 @@ export class CardComponent {
   @Input('product')
   set _product(productIn: Product) {
     this.product = productIn;
-    if (productIn.inStock === 1) this.count.setValue(1);
+    if (productIn.inStock < this.count.value && productIn.inStock !== 0)
+      this.count.setValue(productIn.inStock);
   }
+
   @Output() onBuy = new EventEmitter<ProductChange>();
 
   AddToCartClick() {

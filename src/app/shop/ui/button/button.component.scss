@@ -1,0 +1,21 @@
+.custom-btn {
+  @apply inline-flex text-sm font-semibold px-4 bg-neutral rounded-lg h-12 uppercase  justify-center select-none items-center hover:bg-neutral-focus transition-all duration-200 ease-in-out w-32;
+
+  animation: popAnim 0.25s ease-out;
+}
+
+@keyframes popAnim {
+  0% {
+    transform: scale(0.95);
+  }
+  40% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.custom-btn:active:is(:hover, :focus) {
+  transform: scale(95%);
+  animation: none;
+}

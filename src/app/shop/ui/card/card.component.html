@@ -25,7 +25,9 @@
         [formControl]="count"
       ></app-count-input>
 
-      <button class="btn w-32" (click)="AddToCartClick()">Do koszyka</button>
+      <app-button (click)="AddToCartClick()" class="w-32"
+        >Do koszyka</app-button
+      >
     </ng-container>
   </div>
 </div>

@@ -11,10 +11,9 @@ import { AppComponent } from './app.component';
 import { appBinIcon } from './icons/bin';
 import { appMinusIcon } from './icons/minus';
 import { appPlusIcon } from './icons/plus';
-import { OrderCompleteComponent } from './shop/feature/order-complete/order-complete.component';
 
 @NgModule({
-  declarations: [AppComponent, OrderCompleteComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

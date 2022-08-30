@@ -1,6 +1,9 @@
 @media screen and (max-width: 1044px) {
   :host {
-    @apply fixed right-0  bg-base-100/80 backdrop-blur-md overflow-y-auto;
+    @apply fixed right-0  bg-base-100/90 overflow-y-auto;
     height: calc(100% - 64px);
+
+    /* Other values for blur break */
+    backdrop-filter: blur(15px);
   }
 }

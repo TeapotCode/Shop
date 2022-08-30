@@ -13,21 +13,25 @@ import {
   databaseFeatureKey,
   databaseReducer,
 } from '../../data-access/store/database/database.reducer';
+import { ButtonComponent } from '../../ui/button/button.component';
 import { CardSmallComponent } from '../../ui/card-small/card-small.component';
 import { CardComponent } from '../../ui/card/card.component';
 import { CountInputComponent } from '../../ui/count-input/count-input.component';
+import { FiltersComponent } from '../../ui/filters/filters.component';
 import { NavbarComponent } from '../../ui/navbar/navbar.component';
 import { StarsComponent } from '../../ui/stars/stars.component';
 import { NotificationModule } from '../../utils/notification/notification.module';
 import { DrawerComponent } from '../drawer/drawer.component';
-import { FiltersComponent } from '../../ui/filters/filters.component';
 import { ProductsComponent } from '../products/products.component';
 import { ShopComponent } from '../shop/shop.component';
+import { OrderCompleteComponent } from './../order-complete/order-complete.component';
 import { ShellRoutingModule } from './shell-routing.module';
 
 @NgModule({
   declarations: [
     ShopComponent,
+    OrderCompleteComponent,
+    ButtonComponent,
     NavbarComponent,
     CardComponent,
     DrawerComponent,
