@@ -1,7 +1,15 @@
-.custom-btn {
-  @apply inline-flex text-sm font-semibold px-4 bg-neutral rounded-lg h-12 uppercase  justify-center select-none items-center hover:bg-neutral-focus transition-all duration-200 ease-in-out w-32;
+:host {
+  @apply cursor-pointer inline-flex text-sm font-semibold px-4 rounded-lg h-12 uppercase justify-center select-none items-center  transition-all duration-200 ease-in-out;
 
   animation: popAnim 0.25s ease-out;
+
+  &.primary {
+    @apply bg-primary hover:bg-primary-focus text-primary-content;
+  }
+
+  &.base {
+    @apply bg-neutral hover:bg-neutral-focus text-neutral-content;
+  }
 }
 
 @keyframes popAnim {
@@ -15,7 +23,8 @@
     transform: scale(1);
   }
 }
-.custom-btn:active:is(:hover, :focus) {
+
+:host:active:is(:hover, :focus) {
   transform: scale(95%);
   animation: none;
 }

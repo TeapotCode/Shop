@@ -1,10 +1,9 @@
-<div class="btn-group" *ngIf="selectedFilters$ | async as filters">
-  <button
-    class="btn"
+<div class="group" *ngIf="selectedFilters$ | async as filters">
+  <app-button
     *ngFor="let enum of productCategory | keyvalue"
     (click)="onSelect(enum.value)"
-    [class.btn-active]="filters.has(enum.value)"
+    [type]="filters.has(enum.value) ? 'primary' : 'base'"
   >
     {{ enum.value }}
-  </button>
+  </app-button>
 </div>

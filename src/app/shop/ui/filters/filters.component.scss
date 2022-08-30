@@ -1,3 +1,17 @@
 :host {
   @apply flex gap-3 my-8;
 }
+
+.group > app-button {
+  &:not(:last-of-type, :first-of-type) {
+    @apply rounded-none;
+  }
+
+  &:last-of-type {
+    @apply rounded-l-none;
+  }
+
+  &:first-of-type {
+    @apply rounded-r-none;
+  }
+}

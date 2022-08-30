@@ -7,6 +7,7 @@ import { ShopFacadeService } from './../../data-access/store/shop-facade.service
 import { FiltersComponent } from './filters.component';
 import { ProductCategory } from '../../utils/product.interface';
 import { provideMockStore } from '@ngrx/store/testing';
+import { ButtonComponent } from '../button/button.component';
 
 describe('FiltersComponent', () => {
   let component: FiltersComponent;
@@ -15,7 +16,7 @@ describe('FiltersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FiltersComponent],
+      declarations: [FiltersComponent, ButtonComponent],
       providers: [
         provideMockWithValues(ShopFacadeService, {
           filters$: of(new Set([ProductCategory.BAGUETTES])),
@@ -34,14 +35,14 @@ describe('FiltersComponent', () => {
 
   it('should render filters', () => {
     fixture.detectChanges();
-    let buttons = fixture.debugElement.queryAll(By.css('button'));
+    let buttons = fixture.debugElement.queryAll(By.css('app-button'));
     expect(buttons.length).toBeGreaterThan(0);
   });
 
   it('should trigger toggleFilter when clicked', () => {
     const toggleFilterSpy = jest.spyOn(shopFacade, 'toggleFilter');
     fixture.detectChanges();
-    let button = fixture.debugElement.query(By.css('button'));
+    let button = fixture.debugElement.query(By.css('app-button'));
 
     button.triggerEventHandler('click');
     expect(toggleFilterSpy).toHaveBeenCalledTimes(1);
@@ -50,8 +51,9 @@ describe('FiltersComponent', () => {
   it('should color activated filter', () => {
     fixture.detectChanges();
 
-    const button = fixture.debugElement.query(By.css('.btn-active'));
+    const button = fixture.debugElement.query(By.css('.primary'));
 
+    expect(button).toBeTruthy();
     expect(button.nativeElement.textContent.trim()).toBe(
       ProductCategory.BAGUETTES
     );
