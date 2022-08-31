@@ -28,7 +28,7 @@ export class CardComponent {
 
   @Output() onBuy = new EventEmitter<ProductChange>();
 
-  AddToCartClick() {
+  addToCartClick() {
     if (this.count.value <= 0) return;
     this.onBuy.emit({ product: this.product!, count: this.count.value });
   }

@@ -1,10 +1,4 @@
-import { ChangeDetectorRef, OnInit } from '@angular/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -17,14 +11,6 @@ import {
     role: 'button',
   },
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   @Input() type: 'primary' | 'base' = 'base';
-
-  constructor(private cd: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    // if (this.type === 'primary') this.class =
-
-    this.cd.detectChanges();
-  }
 }
