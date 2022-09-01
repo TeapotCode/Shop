@@ -1,11 +1,10 @@
-import * as databaseSelectors from './database.select';
-import { DatabaseState } from './database.reducer';
-import { ProductMock } from '../../../utils/product.mock';
-import { initialState } from '../cart/cart.reducer';
 import { ProductCategory } from '../../../utils/product.interface';
+import { ProductMock } from '../../../utils/product.mock';
 import * as cartActions from '../cart/cart.action';
 import * as databaseActions from './database.action';
 import * as fromReducer from './database.reducer';
+import { DatabaseState } from './database.reducer';
+import * as databaseSelectors from './database.select';
 
 describe('DatabaseStore', () => {
   describe('DatabaseSelectors', () => {
